@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+class Plant(models.Model):
+    name = models.TextField()
+    upperTemperature = models.IntegerField()
+    lowerTemperature = models.IntegerField()
+    upperHumidity = models.IntegerField()
+    lowerHumidity = models.IntegerField()
+    upperLight = models.TextField()
+    lowerLight = models.TextField()
