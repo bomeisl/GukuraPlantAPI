@@ -13,22 +13,24 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from environs import Env
 
+env = Env()
+env.read_env()
+
 from django.conf.global_settings import STATIC_ROOT, SECRET_KEY
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = Env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.pythonanywhere.com']
 
 
 # Application definition
@@ -78,11 +80,11 @@ WSGI_APPLICATION = 'GukuraAPI.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env("DBENGINE"),
-        'HOST': env("DBHOST"),
-        'NAME': env("DBNAME"),
-        'USER': env("DBUSER"),
-        'PASSWORD': env("DBPASSWORD")
+        'ENGINE': env.str("DBENGINE"),
+        'HOST': env.str("DBHOST"),
+        'NAME': env.str("DBNAME"),
+        'USER': env.str("DBUSER"),
+        'PASSWORD': env.str("DBPASSWORD")
     }
 }
 
